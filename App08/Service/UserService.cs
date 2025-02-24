@@ -23,7 +23,6 @@ public  class UserService
 
         //Database
         model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
-        model.RoleId = 11;
 
         repository.Add(model);                
         //var b = new Blog();

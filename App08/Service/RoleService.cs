@@ -16,6 +16,11 @@ public  class RoleService
         repository.Add(model);
     }
 
+    public IQueryable<Role> GetAll()
+    {
+        return repository.Get<Role>();        
+    }
+
     public (List<Role>, int) LoadData(string namTerm, int page, int pageSize)
     {
         var query = repository.Get<Role>();    

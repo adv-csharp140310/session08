@@ -63,6 +63,7 @@ public static class DynamicFormUtils
             if (Activator.CreateInstance(uiControlAttribute.DataProviderType) is IDataProvider dataProvider)
             {
                 var data = dataProvider.GetData();
+                comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
                 comboBox.Items.AddRange(data.ToArray());
                 comboBox.DisplayMember = "Display";
                 comboBox.ValueMember = "Value";
