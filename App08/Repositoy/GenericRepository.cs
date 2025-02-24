@@ -7,19 +7,19 @@ public class GenericRepository
     //crud
     AppDbContext ctx = new AppDbContext();
 
-    public void Add<T>(T model) where T : BaseEntity
+    public void Add<T>(T model) where T : class
     {
         ctx.Add(model);
         ctx.SaveChanges();
     }
 
-    public void Update<T>(T model) where T : BaseEntity
+    public void Update<T>(T model) where T : class
     {
         ctx.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         ctx.SaveChanges();
     }
 
-    public void Delete<T>(T model) where T : BaseEntity
+    public void Delete<T>(T model) where T : class
     {
         ctx.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
         ctx.SaveChanges();
@@ -31,7 +31,7 @@ public class GenericRepository
     }
 
     //leaky abstraction
-    public IQueryable<T> Get<T>() where T : BaseEntity
+    public IQueryable<T> Get<T>() where T : class
     {
         var ctx = new AppDbContext();
         return ctx.Set<T>().AsQueryable();
