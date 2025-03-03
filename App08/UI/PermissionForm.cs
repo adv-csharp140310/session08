@@ -7,7 +7,7 @@ public partial class PermissionForm : Form
 {
     List<string> checkedButtons = new List<string>();
     RoleService roleService = new RoleService();
-    PermissionService permissionService = new PermissionService();
+    
     public PermissionForm()
     {
         InitializeComponent();
@@ -62,12 +62,14 @@ public partial class PermissionForm : Form
 
     private void buttonSave_Click(object sender, EventArgs e)
     {
+        PermissionService permissionService = new PermissionService();
         var roleId = (int)comboBoxRole.SelectedValue;
         permissionService.AddPermission(roleId, checkedButtons);
     }
 
     private void comboBoxRole_SelectedIndexChanged(object sender, EventArgs e)
     {
+        PermissionService permissionService = new PermissionService();
         checkedButtons.Clear();
         var roleId = (int)comboBoxRole.SelectedValue;
         checkedButtons = permissionService.GetRolePermissions(roleId);

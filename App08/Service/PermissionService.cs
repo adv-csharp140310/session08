@@ -39,12 +39,22 @@ public class PermissionService
 
                 };
                 repository.Add(permission);
+                repository.Add(new RolePermission
+                {
+                    RoleId = roleId,
+                    Permission = permission
+                });
+            }
+            else
+            {
+                repository.Add(new RolePermission
+                {
+                    RoleId = roleId,
+                    PermissionId = permission.Id
+                });
             }
 
-            repository.Add(new RolePermission { 
-                RoleId = roleId, 
-                Permission = permission 
-            });
+            
         }
     }
 
